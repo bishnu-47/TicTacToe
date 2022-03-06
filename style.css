@@ -1,0 +1,28 @@
+.marea {
+  height: 760px;
+  width: 760px;
+}
+.b1 {
+  height: 250px;
+  width: 250px;
+  float: left;
+  border: 1px solid black;
+}
+.b1 button {
+  height: 100%;
+  width: 100%;
+  font-size: 175px;
+}
+#x,
+#o {
+  font-size: 100px;
+}
+#rstsc {
+  height: 150px;
+  width: 400px;
+}
+#rstsc button {
+  height: 100%;
+  width: 100%;
+  font-size: 50px;
+}
