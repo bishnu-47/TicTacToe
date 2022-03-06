@@ -1,267 +1,156 @@
 let c = 0;
-let b1 = 12,
-  b2 = 13,
-  b3 = 14,
-  b4 = 15,
-  b5 = 16,
-  b6 = 17,
-  b7 = 18,
-  b8 = 19,
-  b9 = 10;
+let b = [];
+
+for (let i = 0; i < 9; i++) {
+  b[i] = 11 + i;
+}
 let x = 0,
   o = 0;
-function fun1() {
-  if (document.getElementById("b1").innerHTML === "") {
-    if (c % 2 == 0) {
-      document.getElementById("b1").innerHTML = "X";
-      b1 = 1;
-    } else {
-      document.getElementById("b1").innerHTML = "O";
-      b1 = 0;
-    }
-    c++;
-  } else {
-    alert("Space is preoccupied");
-  }
-}
 
-function fun2() {
-  if (document.getElementById("b2").innerHTML === "") {
+function fun(number) {
+  if (document.getElementById(`b${number}`).innerHTML === "") {
     if (c % 2 == 0) {
-      document.getElementById("b2").innerHTML = "X";
-      b2 = 1;
+      document.getElementById(`b${number}`).innerHTML = "X";
+      b[number - 1] = 1;
     } else {
-      document.getElementById("b2").innerHTML = "O";
-      b2 = 0;
+      document.getElementById(`b${number}`).innerHTML = "O";
+      b[number - 1] = 0;
     }
     c++;
   } else {
-    alert("Space is preoccupied");
-  }
-}
-
-function fun3() {
-  if (document.getElementById("b3").innerHTML === "") {
-    if (c % 2 == 0) {
-      document.getElementById("b3").innerHTML = "X";
-      b3 = 1;
-    } else {
-      document.getElementById("b3").innerHTML = "O";
-      b3 = 0;
-    }
-    c++;
-  } else {
-    alert("Space is preoccupied");
-  }
-}
-
-function fun4() {
-  if (document.getElementById("b4").innerHTML === "") {
-    if (c % 2 == 0) {
-      document.getElementById("b4").innerHTML = "X";
-      b4 = 1;
-    } else {
-      document.getElementById("b4").innerHTML = "O";
-      b4 = 0;
-    }
-    c++;
-  } else {
-    alert("Space is preoccupied");
-  }
-}
-
-function fun5() {
-  if (document.getElementById("b5").innerHTML === "") {
-    if (c % 2 == 0) {
-      document.getElementById("b5").innerHTML = "X";
-      b5 = 1;
-    } else {
-      document.getElementById("b5").innerHTML = "O";
-      b5 = 0;
-    }
-    c++;
-  } else {
-    alert("Space is preoccupied");
-  }
-}
-
-function fun6() {
-  if (document.getElementById("b6").innerHTML === "") {
-    if (c % 2 == 0) {
-      document.getElementById("b6").innerHTML = "X";
-      b6 = 1;
-    } else {
-      document.getElementById("b6").innerHTML = "O";
-      b6 = 0;
-    }
-    c++;
-  } else {
-    alert("Space is preoccupied");
-  }
-}
-
-function fun7() {
-  if (document.getElementById("b7").innerHTML === "") {
-    if (c % 2 == 0) {
-      document.getElementById("b7").innerHTML = "X";
-      b7 = 1;
-    } else {
-      document.getElementById("b7").innerHTML = "O";
-      b7 = 0;
-    }
-    c++;
-  } else {
-    alert("Space is preoccupied");
-  }
-}
-
-function fun8() {
-  if (document.getElementById("b8").innerHTML === "") {
-    if (c % 2 == 0) {
-      document.getElementById("b8").innerHTML = "X";
-      b8 = 1;
-    } else {
-      document.getElementById("b8").innerHTML = "O";
-      b8 = 0;
-    }
-    c++;
-  } else {
-    alert("Space is preoccupied");
-  }
-}
-
-function fun9() {
-  if (document.getElementById("b9").innerHTML === "") {
-    if (c % 2 == 0) {
-      document.getElementById("b9").innerHTML = "X";
-      b9 = 1;
-    } else {
-      document.getElementById("b9").innerHTML = "O";
-      b9 = 0;
-    }
-    c++;
-  } else {
-    alert("Space is preoccupied");
+    console.log("cell is occupied!");
   }
 }
 
 function check() {
-  if (b1 == b2 && b2 == b3) {
-    if (b1 == 1) {
-      xwin();
-    } else {
-      owin();
+  console.log(b);
+
+  // 0 1 2
+  // 3 4 5
+  // 6 7 8
+
+  // case1: for horizontal case
+  let temp = 0;
+  for (let i = 0; i < 3; i++) {
+    if (b[temp] == b[temp + 1] && b[temp + 1] == b[temp + 2]) {
+      if (b[temp] == 1) xwin();
+      else owin();
+
+      resetBoxes();
     }
-    reset();
-    alert("Starting a new game!!");
+    temp += 3;
   }
-  if (b4 == b5 && b5 == b6) {
-    if (b4 == 1) {
-      xwin();
-    } else {
-      owin();
+
+  // case2: for vertical case
+  temp = 0;
+  for (let i = 0; i < 3; i++) {
+    if (b[temp] == b[temp + 3] && b[temp + 3] == b[temp + 6]) {
+      if (b[temp] == 1) xwin();
+      else owin();
+
+      resetBoxes();
     }
-    reset();
-    alert("Starting a new game!!");
+    temp++;
   }
-  if (b7 == b8 && b8 == b9) {
-    if (b7 == 1) {
-      xwin();
-    } else {
-      owin();
+
+  //446-224
+  // case3: for diagonal case
+  /* let diff=4;
+  temp = 0;
+  for (let i = 0; i < 2; i++) {
+    console.log(temp, diff)
+    if (b[temp] == b[temp + diff] && b[temp + diff] == b[temp + (diff+2)]) {
+      if (b[temp] == 1) xwin();
+      else owin();
+      disableBtns();
+      setTimeout(()=>{
+        reset();
+        enableBtns();
+      }, 1000);
     }
-    reset();
-    alert("Starting a new game!!");
+    temp+=2;
+    diff-=2;
+  }*/
+
+  // 0 1 2
+  // 3 4 5
+  // 6 7 8
+  // case : right diagnoal
+  if (b[0] == b[4] && b[4] == b[8]) {
+    if (b[0] == 1) xwin();
+    else owin();
+
+    resetBoxes();
   }
-  if (b1 == b4 && b4 == b7) {
-    if (b1 == 1) {
-      xwin();
-    } else {
-      owin();
+  temp++;
+
+  // case : left diagonal
+  if (b[2] == b[4] && b[4] == b[6]) {
+    if (b[2] == 1) xwin();
+    else owin();
+
+    resetBoxes();
+  }
+
+  // case: tied
+  let count = 0;
+  for (let i = 0; i < 9; i++) {
+    if (b[i] < 10) {
+      count++;
     }
-    reset();
-    alert("Starting a new game!!");
   }
-  if (b2 == b5 && b5 == b8) {
-    if (b2 == 1) {
-      xwin();
-    } else {
-      owin();
-    }
-    reset();
-    alert("Starting a new game!!");
-  }
-  if (b3 == b6 && b6 == b9) {
-    if (b3 == 1) {
-      xwin();
-    } else {
-      owin();
-    }
-    reset();
-    alert("Starting a new game!!");
-  }
-  if (b1 == b5 && b5 == b9) {
-    if (b1 == 1) {
-      xwin();
-    } else {
-      owin();
-    }
-    reset();
-    alert("Starting a new game!!");
-  }
-  if (b3 == b5 && b5 == b7) {
-    if (b3 == 1) {
-      xwin();
-    } else {
-      owin();
-    }
-    reset();
-    alert("Starting a new game!!");
-  }
-  if (
-    b1 < 9 &&
-    b2 < 9 &&
-    b3 < 9 &&
-    b4 < 9 &&
-    b5 < 9 &&
-    b6 < 9 &&
-    b7 < 9 &&
-    b8 < 9 &&
-    b9 < 9
-  ) {
-    alert("Game is tied!!");
-    reset();
-    alert("Starting a new game!!");
+  if (count == 9) {
+    console.log("Game is tied!");
+    resetBoxes();
   }
 }
 
+function resetBoxes() {
+  disableBtns();
+  setTimeout(() => {
+    reset();
+    enableBtns();
+  }, 1000);
+}
+
 function owin() {
-  alert("O is the Winner!!");
+  console.log("O is the Winner!!");
   o++;
   document.getElementById("o").innerHTML = "O : " + o;
 }
 
 function xwin() {
-  alert("X is the Winner");
+  console.log("X is the Winner");
   x++;
   document.getElementById("x").innerHTML = "X : " + x;
 }
 
+function disableBtns() {
+  for (let i = 1; i <= 9; i++) {
+    document.getElementById("b" + i).disabled = true;
+  }
+}
+
+function enableBtns() {
+  for (let i = 1; i <= 9; i++) {
+    document.getElementById("b" + i).disabled = false;
+  }
+}
+
 function reset() {
   c = 0;
+
+  // reset each button
   for (let i = 1; i <= 9; i++) {
     document.getElementById(`b${i}`).innerHTML = "";
   }
-  b1 = 12;
-  b2 = 13;
-  b3 = 14;
-  b4 = 15;
-  b5 = 16;
-  b6 = 17;
-  b7 = 18;
-  b8 = 19;
-  b9 = 11;
+
+  // reset array
+  for (let i = 0; i < 9; i++) {
+    b[i] = 11 + i;
+  }
 }
+
 function rs() {
   x = 0;
   o = 0;
