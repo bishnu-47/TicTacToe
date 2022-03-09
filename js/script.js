@@ -1,9 +1,13 @@
+//if c is even then print x if odd then o
 let c = 0;
+//for buttons
 let b = [];
-
+//to store value so that it doesn't store garbage value which could be same and can cause problem
+//and some other reason too
 for (let i = 0; i < 9; i++) {
   b[i] = 11 + i;
 }
+//to count how many times "X" and "O" won
 let x = 0,
   o = 0;
 
@@ -17,8 +21,6 @@ function fun(number) {
       b[number - 1] = 0;
     }
     c++;
-  } else {
-    console.log("cell is occupied!");
   }
 }
 
@@ -53,34 +55,13 @@ function check() {
     temp++;
   }
 
-  //446-224
-  // case3: for diagonal case
-  /* let diff=4;
-  temp = 0;
-  for (let i = 0; i < 2; i++) {
-    console.log(temp, diff)
-    if (b[temp] == b[temp + diff] && b[temp + diff] == b[temp + (diff+2)]) {
-      if (b[temp] == 1) xwin();
-      else owin();
-      disableBtns();
-      setTimeout(()=>{
-        reset();
-        enableBtns();
-      }, 1000);
-    }
-    temp+=2;
-    diff-=2;
-  }*/
-
-  // 0 1 2
-  // 3 4 5
-  // 6 7 8
   // case : right diagnoal
   if (b[0] == b[4] && b[4] == b[8]) {
     if (b[0] == 1) xwin();
     else owin();
 
     resetBoxes();
+    return;
   }
   temp++;
 
@@ -90,6 +71,7 @@ function check() {
     else owin();
 
     resetBoxes();
+    return;
   }
 
   // case: tied
@@ -100,7 +82,7 @@ function check() {
     }
   }
   if (count == 9) {
-    console.log("Game is tied!");
+    showMsg("<br><br> &#9; Game is tied!!!");
     resetBoxes();
   }
 }
@@ -114,15 +96,32 @@ function resetBoxes() {
 }
 
 function owin() {
-  console.log("O is the Winner!!");
+  // show animation
+  showAnimation(2);
+
+  showMsg("<br><br>O is the Winner!!!");
   o++;
   document.getElementById("o").innerHTML = "O : " + o;
 }
 
 function xwin() {
-  console.log("X is the Winner");
+  // show animation
+  showAnimation(2);
+
+  showMsg("<br><br>X is the Winner!!!");
   x++;
   document.getElementById("x").innerHTML = "X : " + x;
+}
+
+function showMsg(msg, type) {
+  document.getElementById("msj").style.display = "block";
+  document.getElementById("msj").innerHTML = msg;
+
+  // remove the msg after 1 sec
+  setTimeout(() => {
+    document.getElementById("msj").innerHTML = "";
+    document.getElementById("msj").style.display = "none";
+  }, 1500);
 }
 
 function disableBtns() {
@@ -156,4 +155,38 @@ function rs() {
   o = 0;
   document.getElementById("x").innerHTML = "X : " + x;
   document.getElementById("o").innerHTML = "O : " + o;
+  reset();
+}
+
+function showAnimation(secs) {
+  var duration = secs * 1000;
+  var animationEnd = Date.now() + duration;
+  var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+  function randomInRange(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  var interval = setInterval(function () {
+    var timeLeft = animationEnd - Date.now();
+
+    if (timeLeft <= 0) {
+      return clearInterval(interval);
+    }
+
+    var particleCount = 50 * (timeLeft / duration);
+    // since particles fall down, start a bit higher than random
+    confetti(
+      Object.assign({}, defaults, {
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+      })
+    );
+    confetti(
+      Object.assign({}, defaults, {
+        particleCount,
+        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+      })
+    );
+  }, 250);
 }
