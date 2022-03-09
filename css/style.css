@@ -125,5 +125,6 @@ body {
     font-size: 50px;
     font-family: "Sansita Swashed", cursive;
     text-shadow: 2px 2px 2px #fff;
+    text-align:center;
   }
 }
