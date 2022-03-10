@@ -1,41 +1,39 @@
 //if c is even then print x if odd then o
 let c = 0;
 //for buttons
-let b = [];
+let btnArr = [];
 //to store value so that it doesn't store garbage value which could be same and can cause problem
 //and some other reason too
 for (let i = 0; i < 9; i++) {
-  b[i] = 11 + i;
+  btnArr[i] = 11 + i;
 }
 //to count how many times "X" and "O" won
 let x = 0,
   o = 0;
+// load sound
+loadSound();
 
-function fun(number) {
+function onBtnClick(number) {
+  playSound("click");
+  
   if (document.getElementById(`b${number}`).innerHTML === "") {
     if (c % 2 == 0) {
       document.getElementById(`b${number}`).innerHTML = "X";
-      b[number - 1] = 1;
+      btnArr[number - 1] = 1;
     } else {
       document.getElementById(`b${number}`).innerHTML = "O";
-      b[number - 1] = 0;
+      btnArr[number - 1] = 0;
     }
     c++;
   }
 }
 
 function check() {
-  console.log(b);
-
-  // 0 1 2
-  // 3 4 5
-  // 6 7 8
-
   // case1: for horizontal case
   let temp = 0;
   for (let i = 0; i < 3; i++) {
-    if (b[temp] == b[temp + 1] && b[temp + 1] == b[temp + 2]) {
-      if (b[temp] == 1) xwin();
+    if (btnArr[temp] == btnArr[temp + 1] && btnArr[temp + 1] == btnArr[temp + 2]) {
+      if (btnArr[temp] == 1) xwin();
       else owin();
 
       resetBoxes();
@@ -46,8 +44,8 @@ function check() {
   // case2: for vertical case
   temp = 0;
   for (let i = 0; i < 3; i++) {
-    if (b[temp] == b[temp + 3] && b[temp + 3] == b[temp + 6]) {
-      if (b[temp] == 1) xwin();
+    if (btnArr[temp] == btnArr[temp + 3] && btnArr[temp + 3] == btnArr[temp + 6]) {
+      if (btnArr[temp] == 1) xwin();
       else owin();
 
       resetBoxes();
@@ -56,8 +54,8 @@ function check() {
   }
 
   // case : right diagnoal
-  if (b[0] == b[4] && b[4] == b[8]) {
-    if (b[0] == 1) xwin();
+  if (btnArr[0] == btnArr[4] && btnArr[4] == btnArr[8]) {
+    if (btnArr[0] == 1) xwin();
     else owin();
 
     resetBoxes();
@@ -66,8 +64,8 @@ function check() {
   temp++;
 
   // case : left diagonal
-  if (b[2] == b[4] && b[4] == b[6]) {
-    if (b[2] == 1) xwin();
+  if (btnArr[2] == btnArr[4] && btnArr[4] == btnArr[6]) {
+    if (btnArr[2] == 1) xwin();
     else owin();
 
     resetBoxes();
@@ -77,12 +75,12 @@ function check() {
   // case: tied
   let count = 0;
   for (let i = 0; i < 9; i++) {
-    if (b[i] < 10) {
+    if (btnArr[i] < 10) {
       count++;
     }
   }
   if (count == 9) {
-    showMsg("<br><br> &#9; Game is tied!!!");
+    showMsg("<br><br>Game is tied!!!");
     resetBoxes();
   }
 }
@@ -98,6 +96,7 @@ function resetBoxes() {
 function owin() {
   // show animation
   showAnimation(2);
+  playSound("win");
 
   showMsg("<br><br>O is the Winner!!!");
   o++;
@@ -107,6 +106,7 @@ function owin() {
 function xwin() {
   // show animation
   showAnimation(2);
+  playSound("win");
 
   showMsg("<br><br>X is the Winner!!!");
   x++;
@@ -114,13 +114,13 @@ function xwin() {
 }
 
 function showMsg(msg, type) {
-  document.getElementById("msj").style.display = "block";
-  document.getElementById("msj").innerHTML = msg;
+  document.getElementById("msg").style.display = "block";
+  document.getElementById("msg").innerHTML = msg;
 
   // remove the msg after 1 sec
   setTimeout(() => {
-    document.getElementById("msj").innerHTML = "";
-    document.getElementById("msj").style.display = "none";
+    document.getElementById("msg").innerHTML = "";
+    document.getElementById("msg").style.display = "none";
   }, 1500);
 }
 
@@ -146,7 +146,7 @@ function reset() {
 
   // reset array
   for (let i = 0; i < 9; i++) {
-    b[i] = 11 + i;
+    btnArr[i] = 11 + i;
   }
 }
 
@@ -189,4 +189,13 @@ function showAnimation(secs) {
       })
     );
   }, 250);
+}
+
+function loadSound () {
+  createjs.Sound.registerSound("/sounds/winning_sound.wav", "win");
+  createjs.Sound.registerSound("/sounds/button_click.wav", "click");
+}
+
+function playSound (soundId) {
+  createjs.Sound.play(soundId);
 }

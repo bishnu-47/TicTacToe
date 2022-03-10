@@ -2,35 +2,63 @@ body {
   margin: 0;
   padding: 0;
 }
-.tarea {
+
+.container {
+  background-image: url("/images/cc.jpg");
+  padding-bottom: 0.5rem;
   width: 100%;
   height: 100%;
-  margin-bottom: 0.5rem;
-  background-image: url("images/cc.jpg");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .head {
-  margin: 0 auto;
   height: 100px;
   width: 600px;
   font-family: "Syne Mono", monospace;
+  text-align: center;
   font-size: 80px;
   color: red;
+  font-family: "Syne Mono", monospace;
+  text-shadow: #fc0 1px 0 10px;
+  text-shadow: 5px 5px #558abb;
+  text-shadow: 1px 1px 2px pink;
+  text-shadow: red 2px 5px;
+  text-shadow: 5px 10px;
+  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+  font-size: 55px;
+  color: red;
+  padding: 20px 0 0 0;
 }
-.marea {
+
+#msg{
+  display: none;
   margin: 0 auto;
+  width: 400px;
+  height: 1px;
+  color: #15b76c;
+  text-align: center;
+  font-size: 50px;
+  font-family: "Sansita Swashed", cursive;
+  text-shadow: 2px 2px 2px #fff;
+}
+
+.marea {
   height: 310px;
   width: 310px;
 }
 
-/* change name to btn */
-.b1 {
+.btn {
   height: 100px;
   width: 100px;
   float: left;
   border: 1px solid black;
 }
-.b1 button {
+
+.btn button {
   height: 100%;
   width: 100%;
   font-size: 70px;
@@ -38,92 +66,28 @@ body {
   color: #ff9e01;
   cursor: pointer;
 }
-#x,
-#o {
-  font-size: 100px;
-}
 
-/* change name to resetScore */
-#rstsc {
-  height: 150px;
-  width: 400px;
-}
-#rstsc button {
-  height: 100%;
-  width: 100%;
+.score{
+  text-align: center;
   font-size: 50px;
-  cursor: pointer;
+  width: 300px;
+  padding-top: 1rem;
+  font-family: "Sansita Swashed", cursive;
+  color: #fdd20e;
 }
-@media screen and (max-width: 800px) {
-  .tarea {
-    width: 100%;
-    height: 100%;
-    background-image: url("images/cc.jpg");
-    background-size: cover;
-  }
-  .head {
-    margin: 0 auto;
-    height: 100px;
-    width: 370px;
-    font-family: "Syne Mono", monospace;
-    text-shadow: #fc0 1px 0 10px;
-    text-shadow: 5px 5px #558abb;
-    text-shadow: 1px 1px 2px pink;
-    text-shadow: red 2px 5px;
-    text-shadow: 5px 10px;
-    text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
-    font-size: 55px;
-    color: red;
-    padding: 20px 0 0 0;
-  }
-  .marea {
-    margin: 0 auto;
-    height: 310px;
-    width: 310px;
-  }
-  .b1 {
-    height: 100px;
-    width: 100px;
 
-    border: 1px solid black;
-  }
-  .b1 button {
-    height: 100%;
-    width: 100%;
-    font-size: 70px;
-    background: #000;
-    color: #ff9e01;
-  }
-  #x,
-  #o {
-    margin: 0 auto;
-    font-size: 50px;
-    width: 110px;
-    font-family: "Sansita Swashed", cursive;
-    color: #fdd20e;
-  }
-  #rstsc {
-    margin: 0 auto;
-    height: 80px;
-    width: 150px;
-    padding: 30px 0 0 0;
-  }
-  #rstsc button {
-    background: #000;
-    height: 100%;
-    width: 100%;
-    font-size: 25px;
-    font-family: "Syne Mono", monospace;
-    color: red;
-  }
-  #msj {
-    display: none;
-    margin: 0 auto;
-    width: 400px;
-    height: 1px;
-    color: #15b76c;
-    font-size: 50px;
-    font-family: "Sansita Swashed", cursive;
-    text-shadow: 2px 2px 2px #fff;
-  }
+.reset{
+  text-align: center;
+  width: 300px;
+  margin: 2rem 0;
+}
+
+
+#reset-btn {
+  background: #000;
+  font-size: 25px;
+  padding: 1rem;
+  font-family: "Syne Mono", monospace;
+  color: red;
+  cursor: pointer;
 }
