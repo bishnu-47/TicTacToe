@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe</title>
+    <!-- google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sansita+Swashed&display=swap"
+      rel="stylesheet"
+    />
+    <!-- sound -->
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+
+    <!-- animation -->
+     <link
+    rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <!-- own files -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/animate.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="head">Tic Tac Toe</div>
+
+      <p id="msg" class="wow bounceIn" data-wow-duration="1s"></p>
+
+      <div class="marea">
+        <div class="btn">
+          <button id="b1" onclick="onBtnClick(1),check()"></button>
+        </div>
+        <div class="btn">
+          <button id="b2" onclick="onBtnClick(2),check()"></button>
+        </div>
+        <div class="btn">
+          <button id="b3" onclick="onBtnClick(3),check()"></button>
+        </div>
+        <div class="btn">
+          <button id="b4" onclick="onBtnClick(4),check()"></button>
+        </div>
+        <div class="btn">
+          <button id="b5" onclick="onBtnClick(5),check()"></button>
+        </div>
+        <div class="btn">
+          <button id="b6" onclick="onBtnClick(6),check()"></button>
+        </div>
+        <div class="btn">
+          <button id="b7" onclick="onBtnClick(7),check()"></button>
+        </div>
+        <div class="btn">
+          <button id="b8" onclick="onBtnClick(8),check()"></button>
+        </div>
+        <div class="btn">
+          <button id="b9" onclick="onBtnClick(9),check()"></button>
+        </div>
+      </div>
+      <div class="score">
+        <div id="x">X : 0</div>
+        <div id="o">O : 0</div>
+      </div>
+
+      <div class="reset">
+        <button id="reset-btn" onclick="rs()">Reset Scores</button>
+      </div>
+
+    </div>
+    <script src="js/script.js" defer></script>
+    <script src="js/wow.min.js"></script>
+      <script>
+      new WOW().init();
+      </script>
+  </body>
+</html>
